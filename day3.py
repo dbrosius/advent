@@ -42,3 +42,41 @@ def themethod():
 
 x, y = themethod()
 print("position: ({}, {}), sum: {}".format(x, y, x + y))
+
+
+def themethod2():
+    x = 300
+    y = 300
+    mov = 1
+    arr = np.zeros((600, 600))
+    arr[x, y] = 1
+    while True:
+        for _ in range(0, mov):
+            x = x + 1
+            amt = np.sum(arr[x-1:x+2, y-1:y+2])
+            arr[x,y] = amt
+            if amt > FINAL:
+                return amt
+        for _ in range(0, mov):
+            y = y + 1
+            amt = np.sum(arr[x - 1:x + 2, y - 1:y + 2])
+            arr[x,y] = amt
+            if amt > FINAL:
+                return amt
+        mov = mov + 1
+        for _ in range(0, mov):
+            x = x - 1
+            amt = np.sum(arr[x - 1:x + 2, y - 1:y + 2])
+            arr[x,y] = amt
+            if amt > FINAL:
+                return amt
+        for _ in range(0, mov):
+            y = y - 1
+            amt = np.sum(arr[x - 1:x + 2, y - 1:y + 2])
+            arr[x, y] = amt
+            if amt > FINAL:
+                return amt
+        mov = mov + 1
+
+amt = themethod2()
+print('the amount is {}'.format(amt))
